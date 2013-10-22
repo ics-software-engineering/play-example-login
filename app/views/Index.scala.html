@@ -1,0 +1,52 @@
+@(message: String)
+
+@Main("Home") {
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-10 col-sm-offset-1">
+       <h2>Welcome to play-example-login.</h2>
+       <p>The purpose of this system is to illustrate simple authorization and authentication in Play.</p>
+       <p><em>Authorization</em> is the process by which an application decides whether or not a user has access
+       to a certain type of data (for example, an interior page). </p>
+       <p><em>Authentication</em> is the process by which an application determines the identity of a user.</p>
+       <p>Typically, an application will first authenticate the user through a login process, after which
+       the user is authorized to retrieve certain kinds of data. </p>
+       <h3>Functionality</h3>
+       <p><b>Home page:</b> If there is no logged in user, then this page displays a login link 
+       in the navbar.  If there is a logged in user, then this page displays the user name in the 
+       navbar and a pull-down menu to logout.</p>
+       <p><b>Profile page:</b> If there is a logged in user, then the navbar provides a link to this page
+       which displays information about the logged in user.  If there is not a logged in user, then this
+       page cannot be retrieved even if its URL is known.
+       <h3>Try it out</h3>
+       <p><ul>
+          <li>Login in with email "smith@@example.com" and password "password". Once logged in, note that the Profile link appears in the navbar.
+          Take a look at that page.</li>
+          <li>Logout, then try to login with different credentials.  An error should result when you try to submit.</li>
+          <li>While logged out, try to retrieve the /profile page.  Note that you can't do it unless logged in.</li>
+          </ul>
+       </p>
+       <h3>Pros and cons of this example</h3>
+       <p><b>Pros: </b>It's good for showing Play and/or webapp development newbies the basic issues to be 
+       addressed in authorization and authentication.  It's a good code base for creating demo systems that
+       want to illustrate features available with login vs. without login. It doesn't even require setting up
+       a database. The UI, if not amazing, is at least reasonable.</p>
+       <p><b>Cons: </b>This system is not production ready. 
+       <ol>
+       <li> It sends credentials in the clear using 
+       http.  A production system must encrypt credentials sent over the wire, typically by using https.</li>
+       <li>It stores credentials in the clear.  A production system would store encrypted versions of the 
+       credentials so that if the database was hacked, credential data would not be revealed.  
+       <li> It does not illustrate the registration process for creating new users, which typically involves
+       sending a confirmation email.</li>  
+       <li> It does not enable users to login using third party credentials such
+       as Google, Yahoo, or Facebook.</li>
+       </ol>   
+       To see a more complex example that addresses these authentication issues, you 
+       can look at <a href="http://joscha.github.io/play-authenticate/">Play-Authenticate</a>.
+       Another useful system to see if you need more sophisticated forms of authorization in Play is 
+       <a href="https://github.com/schaloner/deadbolt-2">DeadBolt 2</a>.
+       </div>
+     </div>
+   </div>
+}
