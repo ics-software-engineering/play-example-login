@@ -1,0 +1,29 @@
+@(loginForm: Form[views.formdata.LoginFormData])
+
+@import bootstrap3._
+
+@Main("Home") {
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-8 col-sm-offset-2">
+         <div class="well">
+           @helper.form(routes.Application.postLogin(), 'class -> "form-horizontal") {
+           
+             @text(loginForm("email"),
+                   label = "Email",
+                   autofocus = "autofocus")
+
+             @password(loginForm("password"),
+                       label = "Password")
+    
+             <div class="form-group">
+               <div class="col-sm-4 col-sm-offset-5">
+                 <button type="submit" class="btn btn-primary">Login</button>
+               </div>
+             </div>
+           }
+          </div>
+       </div>
+     </div>
+   </div>
+}

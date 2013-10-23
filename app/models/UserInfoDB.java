@@ -40,4 +40,20 @@ public class UserInfoDB {
   public static UserInfo getUser(String email) {
     return userinfos.get(email);
   }
+
+  /**
+   * Returns true if email and password are valid credentials.
+   * @param email The email. 
+   * @param password The password. 
+   * @return True if email is a valid user email and password is valid for that email.
+   */
+  public static boolean isValid(String email, String password) {
+    return ((email != null) 
+            &&
+            (password != null) 
+            &&
+            isUser(email) 
+            &&
+            getUser(email).getPassword().equals(password));
+  }
 }
