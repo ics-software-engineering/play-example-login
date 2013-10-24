@@ -5,7 +5,7 @@
 @Main("Home") {
    <div class="container">
      <div class="row">
-       <div class="col-sm-8 col-sm-offset-2">
+       <div class="col-sm-6 col-sm-offset-4">
          <div class="well">
            @helper.form(routes.Application.postLogin(), 'class -> "form-horizontal") {
            
@@ -17,13 +17,24 @@
                        label = "Password")
     
              <div class="form-group">
-               <div class="col-sm-4 col-sm-offset-5">
+               <div class="col-sm-6 col-sm-offset-5">
                  <button type="submit" class="btn btn-primary">Login</button>
                </div>
              </div>
            }
           </div>
        </div>
+     </div>
+     <div class="row">
+       @if(flash.containsKey("error")) {
+       <div class="col-md-6 col-md-offset-4">
+         <div class="well">
+           <div id="error-message" class="text-danger">
+             @flash.get("error")
+           </div>
+         </div>
+       </div>
+       }
      </div>
    </div>
 }

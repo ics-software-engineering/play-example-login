@@ -4,9 +4,10 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.Index;
-import views.html.Page1;
+import views.html.Profile;
 import views.html.Login;
 import views.formdata.LoginFormData;
+import play.mvc.Security;
 
 /**
  * Implements the controllers for this application.
@@ -31,7 +32,7 @@ public class Application extends Controller {
   }
 
   /**
-   * Process a form submission.
+   * Process a login form submission.
    * First we bind the HTTP POST data to an instance of StudentFormData.
    * The binding process will invoke the StudentFormData.validate() method.
    * If errors are found, re-render the page, displaying the error data. 
@@ -48,15 +49,18 @@ public class Application extends Controller {
       return badRequest(Login.render(formData));
     }
     else {
-      return ok(Index.render());
+      session().clear();
+      session("email", formData.get().email);
+      return redirect(routes.Application.index());
     }
   }
   
   /**
-   * Returns page1, a simple example of a second page to illustrate navigation.
+   * Returns the profile page if the user is logged in.
    * @return The Page1.
    */
-  public static Result page1() {
-    return ok(Page1.render("Welcome to Page1."));
+  @Security.Authenticated(Secured.class)
+  public static Result profile() {
+    return ok(Profile.render("Welcome to Protected."));
   }
 }
