@@ -1,4 +1,4 @@
-@(page: String)(content: Html)
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo)(content: Html)
 
 <!DOCTYPE html>
 
@@ -33,10 +33,17 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-left">
           <li class="@("active".when(page == "Home"))"><a href="@routes.Application.index()">Home</a></li>
-          <li class="@("active".when(page == "Profile"))"><a href="@routes.Application.profile()">Profile</a></li>
+          @if(isLoggedIn) {
+            <li class="@("active".when(page == "Profile"))"><a href="@routes.Application.profile()">Profile</a></li>
+          }
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li class="navbar-right"><a href="@routes.Application.login()">login</a></li>
+          @if(isLoggedIn) {
+            <li class="navbar-right">userInfo.getEmail()</li>
+            <li class="navbar-right"><a href="@routes.Application.logout()">Logout</a></li>
+          } else {  
+            <li class="navbar-right"><a href="@routes.Application.login()">Login</a></li>
+          }
         </ul>
       </div>
     </div>

@@ -1,5 +1,7 @@
 package controllers;
 
+import models.UserInfo;
+import models.UserInfoDB;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -15,24 +17,29 @@ import play.mvc.Security;
 public class Application extends Controller {
 
   /**
-   * Returns the home page. 
-   * @return The resulting home page. 
+   * Provides the Index page to logged in users. 
+   * @return The Index page. 
    */
+  @Security.Authenticated(Secured.class)
   public static Result index() {
-    return ok(Index.render());
+    UserInfo userInfo = UserInfoDB.getUser(request().username());
+    Boolean isLoggedIn = (userInfo != null);
+    return ok(Index.render("Home", isLoggedIn, userInfo));
   }
   
   /**
-   * Returns the login page. 
-   * @return The resulting login page. 
+   * Provides the Login page to all users. 
+   * @return The Login page. 
    */
   public static Result login() {
+    UserInfo userInfo = UserInfoDB.getUser(request().username());
+    Boolean isLoggedIn = (userInfo != null);
     Form<LoginFormData> formData = Form.form(LoginFormData.class);
-    return ok(Login.render(formData));
+    return ok(Login.render("Login", isLoggedIn, userInfo, formData));
   }
 
   /**
-   * Process a login form submission.
+   * Processes a login form submission from any user. 
    * First we bind the HTTP POST data to an instance of StudentFormData.
    * The binding process will invoke the StudentFormData.validate() method.
    * If errors are found, re-render the page, displaying the error data. 
@@ -45,8 +52,8 @@ public class Application extends Controller {
     Form<LoginFormData> formData = Form.form(LoginFormData.class).bindFromRequest();
 
     if (formData.hasErrors()) {
-      flash("error", "Email or password not valid.");
-      return badRequest(Login.render(formData));
+      flash("error", "Login credentials not valid.");
+      return badRequest(Login.render("Login", false, null, formData));
     }
     else {
       session().clear();
@@ -56,11 +63,23 @@ public class Application extends Controller {
   }
   
   /**
-   * Returns the profile page if the user is logged in.
-   * @return The Page1.
+   * Logs the user out and returns them to the Login page. 
+   * @return A redirect to the Login page. 
+   */
+  public static Result logout() {
+    session().clear();
+    flash("success", "You've been logged out");
+    return redirect(routes.Application.login());
+  }
+  
+  /**
+   * Provides the Profile page to logged in users. 
+   * @return The Profile page. 
    */
   @Security.Authenticated(Secured.class)
   public static Result profile() {
-    return ok(Profile.render("Welcome to Protected."));
+    UserInfo userInfo = UserInfoDB.getUser(request().username());
+    Boolean isLoggedIn = (userInfo != null);
+    return ok(Profile.render("Profile", isLoggedIn, userInfo));
   }
 }

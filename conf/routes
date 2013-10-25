@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index()
 GET     /login                      controllers.Application.login()
 POST    /login                      controllers.Application.postLogin()
 GET     /profile                    controllers.Application.profile()
+GET     /logout                      controllers.Application.logout()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

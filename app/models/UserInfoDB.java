@@ -33,12 +33,11 @@ public class UserInfoDB {
 
   /**
    * Returns the UserInfo associated with the email, or null if not found.
-   * Probably should do some error checking in real life. Returning null is not cool.
    * @param email The email.
    * @return The UserInfo.
    */
   public static UserInfo getUser(String email) {
-    return userinfos.get(email);
+    return userinfos.get((email == null) ? "" : email);
   }
 
   /**

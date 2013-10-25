@@ -1,7 +1,7 @@
-@(message: String)
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo)
 
-@Main("Page1") {
+@Main(page, isLoggedIn, userInfo) {
    <div class="container">
-     <p>@message</p> 
+     <p>In the profile page.</p> 
    </div>
 }

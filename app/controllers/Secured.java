@@ -6,6 +6,8 @@ import play.mvc.Http.Context;
 
 /**
  * Implement authorization for this system.
+ * Note that these methods function correctly only within controller methods annotated with: 
+ * @Security.Authenticated(Secured.class)
  * 
  * @author Philip Johnson
  */
