@@ -38,8 +38,8 @@ This is a Play application illustrating a simple approach to authentication and 
   * No support for third-party authentication (google, facebook, etc.)
   
 If you require "production quality" authentication and authorization, you should consider a Play plugin
-such as [play-authenticate](http://joscha.github.io/play-authenticate/).  It is slightly more complicated
-to use but provides mechanisms to address these issues. 
+such as [play-authenticate](http://joscha.github.io/play-authenticate/) or [SecureSocial](http://securesocial.ws/).
+They are slightly more complicated to use but provide mechanisms to address these issues. 
 
 
 
