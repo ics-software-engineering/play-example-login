@@ -17,29 +17,24 @@ import play.mvc.Security;
 public class Application extends Controller {
 
   /**
-   * Provides the Index page to logged in users. 
+   * Provides the Index page (only to unauthenticated users).
    * @return The Index page. 
    */
-  @Security.Authenticated(Secured.class)
   public static Result index() {
-    UserInfo userInfo = UserInfoDB.getUser(request().username());
-    Boolean isLoggedIn = (userInfo != null);
-    return ok(Index.render("Home", isLoggedIn, userInfo));
+    return ok(Index.render("Home", false, null));
   }
   
   /**
-   * Provides the Login page to all users. 
+   * Provides the Login page (only to unauthenticated users). 
    * @return The Login page. 
    */
   public static Result login() {
-    UserInfo userInfo = UserInfoDB.getUser(request().username());
-    Boolean isLoggedIn = (userInfo != null);
     Form<LoginFormData> formData = Form.form(LoginFormData.class);
-    return ok(Login.render("Login", isLoggedIn, userInfo, formData));
+    return ok(Login.render("Login", false, null, formData));
   }
 
   /**
-   * Processes a login form submission from any user. 
+   * Processes a login form submission from an unauthenticated user. 
    * First we bind the HTTP POST data to an instance of StudentFormData.
    * The binding process will invoke the StudentFormData.validate() method.
    * If errors are found, re-render the page, displaying the error data. 
@@ -56,24 +51,25 @@ public class Application extends Controller {
       return badRequest(Login.render("Login", false, null, formData));
     }
     else {
+      // email/password OK, so now we set the session variable and only go to authenticated pages.
       session().clear();
       session("email", formData.get().email);
-      return redirect(routes.Application.index());
+      return redirect(routes.Application.profile());
     }
   }
   
   /**
-   * Logs the user out and returns them to the Login page. 
-   * @return A redirect to the Login page. 
+   * Logs out (only for authenticated users) and returns them to the Index page. 
+   * @return A redirect to the Index page. 
    */
+  @Security.Authenticated(Secured.class)
   public static Result logout() {
     session().clear();
-    flash("success", "You've been logged out");
-    return redirect(routes.Application.login());
+    return redirect(routes.Application.index());
   }
   
   /**
-   * Provides the Profile page to logged in users. 
+   * Provides the Profile page (only to authenticated users).
    * @return The Profile page. 
    */
   @Security.Authenticated(Secured.class)

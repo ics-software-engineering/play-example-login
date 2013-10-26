@@ -12,12 +12,12 @@
        <p>Typically, an application will first authenticate the user through a login process, after which
        the user is authorized to retrieve certain kinds of data. </p>
        <h3>Functionality</h3>
-       <p><b>Home page:</b> If there is no logged in user, then this page displays a login link 
-       in the navbar.  If there is a logged in user, then this page displays the user name in the 
-       navbar and a pull-down menu to logout.</p>
-       <p><b>Profile page:</b> If there is a logged in user, then the navbar provides a link to this page
-       which displays information about the logged in user.  If there is not a logged in user, then this
-       page cannot be retrieved even if its URL is known.
+       <p><b>Home page:</b> Displayed only to unauthenticated users. This page displays a login link 
+       in the navbar.</p>
+       <p><b>Login page:</b> Displayed only to unauthenticated users. This page displays a login form.</p>
+       <p><b>Profile page:</b> Displayed only to authenticated users.  This page provides some text in the 
+       body of the page.  The navbar displays the user name and a logout link.
+       <p><b>Logout link:</b> Displayed only to authenticated users.   Logs them out. </p>
        <h3>Try it out</h3>
        <p><ul>
           <li>Login in with email "smith@@example.com" and password "password". Once logged in, note that the Profile link appears in the navbar.
