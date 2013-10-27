@@ -1,5 +1,8 @@
 ![screenshot](https://raw.github.com/ics-software-engineering/play-example-login/master/doc/play-example-login.png)
 
+Overview
+--------
+
 This is a Play application illustrating a simple approach to authentication and authorization.
 
 **Authentication is done in the following way:**
@@ -41,6 +44,16 @@ If you require "production quality" authentication and authorization, you should
 such as [play-authenticate](http://joscha.github.io/play-authenticate/), [SecureSocial](http://securesocial.ws/),
 and/or [Deadbolt 2](https://github.com/schaloner/deadbolt-2).
 They are slightly more complicated to use but provide mechanisms to address these issues. 
+
+Screencast
+----------
+
+Click the image below to watch a 23 minute walkthrough of this system. 
+
+[<img src="https://raw.github.com/ics-software-engineering/play-example-login/master/doc/play-example-login-youtube.png" width="400">](http://www.youtube.com/watch?v=-bSD1LEeQqQ)
+
+
+
 
 
 
