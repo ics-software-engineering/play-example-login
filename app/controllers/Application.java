@@ -35,8 +35,8 @@ public class Application extends Controller {
 
   /**
    * Processes a login form submission from an unauthenticated user. 
-   * First we bind the HTTP POST data to an instance of StudentFormData.
-   * The binding process will invoke the StudentFormData.validate() method.
+   * First we bind the HTTP POST data to an instance of LoginFormData.
+   * The binding process will invoke the LoginFormData.validate() method.
    * If errors are found, re-render the page, displaying the error data. 
    * If errors not found, render the page with the good data. 
    * @return The index page with the results of validation. 
