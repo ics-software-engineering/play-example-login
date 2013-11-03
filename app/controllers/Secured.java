@@ -12,7 +12,7 @@ import play.mvc.Http.Context;
  * getUserName() and onUnauthorized override superclass methods to restrict
  * access to the profile() page to logged in users.  
  * 
- * getUser(), isLoggedIn(), and getUserInfo() provide helper methods so that controllers
+ * getUser(), isLoggedIn(), and getUserInfo() provide static helper methods so that controllers
  * can know if there is a logged in user.
  * 
  * @author Philip Johnson
@@ -55,7 +55,7 @@ public class Secured extends Security.Authenticator {
    * @return True if user is logged in.
    */
   public static boolean isLoggedIn(Http.Context ctx) {
-    return (ctx.session().get("email") != null);
+    return (getUser(ctx) != null);
   }
   
   /**
