@@ -53,10 +53,13 @@ adds the authenticated user's email to the session object, or else returns the L
 
 <ul>
 <li><p>The <a href="https://github.com/ics-software-engineering/play-example-login/blob/master/app/controllers/Secured.java">Secured class</a>
-supports authorization by extending the Security.Authenticator class and overriding the getUsername and onUnauthorized
-methods.  </p></li>
+supports authorization by extending the Security.Authenticator class and overriding the getUsername() and onUnauthorized()
+methods.  These methods are used to restrict access to the profile page.
+This class also implements helper methods (getUser(), isLoggedIn(), and getUserInfo()) that enable controllers to 
+adjust the view depending upon whether the user is logged in or not.</p></li>
 <li><p>The <a href="https://github.com/ics-software-engineering/play-example-login/blob/master/app/controllers/Application.java">Application controller class</a> 
-annotates controller methods that require authenticated users with @Security.Authenticated(Secured.java).</p></li>
+annotates the controller method sthat requires authenticated users (logout() and profile()) 
+with @Security.Authenticated(Secured.java).</p></li>
 <li><p>The <a href="https://github.com/ics-software-engineering/play-example-login/blob/master/app/views/Main.scala.html">Main.scala.html template</a>
 implements a <a href="https://github.com/ics-software-engineering/play-example-login/blob/master/app/views/Main.scala.html#L34-47">context sensitive navbar</a>
 that displays different links depending upon whether the user is authenticated or unauthenticated.   </p></li>
