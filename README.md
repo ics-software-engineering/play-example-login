@@ -27,7 +27,7 @@ This is a Play application illustrating a simple approach to authentication and 
     adjust the view depending upon whether the user is logged in or not.
     
   * The [Application controller class](https://github.com/ics-software-engineering/play-example-login/blob/master/app/controllers/Application.java) 
-    annotates the controller method sthat requires authenticated users (logout() and profile()) 
+    annotates the controller methods that requires authenticated users (logout() and profile()) 
     with @Security.Authenticated(Secured.java).
     
   * The [Main.scala.html template](https://github.com/ics-software-engineering/play-example-login/blob/master/app/views/Main.scala.html)
