@@ -34,8 +34,6 @@
         <ul class="nav navbar-nav navbar-left">
           @if(isLoggedIn) {
             <li class="@("active".when(page == "Profile"))"><a href="@routes.Application.profile()">Profile</a></li>
-          } else {
-            <li class="@("active".when(page == "Home"))"><a href="@routes.Application.index()">Home</a></li>
           }
         </ul>
         <ul class="nav navbar-nav navbar-right">
