@@ -2,7 +2,6 @@ package controllers;
 
 import models.UserInfo;
 import models.UserInfoDB;
-import play.mvc.Http;
 import play.mvc.Result;
 import play.mvc.Security;
 import play.mvc.Http.Context;
@@ -45,7 +44,7 @@ public class Secured extends Security.Authenticator {
    * @param ctx the context containing the session
    * @return The email of the logged in user, or null if user is not logged in.
    */
-  public static String getUser(Http.Context ctx) {
+  public static String getUser(Context ctx) {
     return ctx.session().get("email");
   }
   
@@ -54,7 +53,7 @@ public class Secured extends Security.Authenticator {
    * @param ctx The context.
    * @return True if user is logged in.
    */
-  public static boolean isLoggedIn(Http.Context ctx) {
+  public static boolean isLoggedIn(Context ctx) {
     return (getUser(ctx) != null);
   }
   
@@ -63,7 +62,7 @@ public class Secured extends Security.Authenticator {
    * @param ctx The context.
    * @return The UserInfo, or null.
    */
-  public static UserInfo getUserInfo(Http.Context ctx) {
+  public static UserInfo getUserInfo(Context ctx) {
     return (isLoggedIn(ctx) ? UserInfoDB.getUser(getUser(ctx)) : null);
   }
 }
