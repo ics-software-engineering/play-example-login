@@ -18,15 +18,17 @@ This is a Play application illustrating a simple approach to authentication and 
   * The [Login controller method](https://github.com/ics-software-engineering/play-example-login/blob/master/app/controllers/Application.java#L36-59)
     adds the authenticated user's email to the session object, or else returns the Login view with errors. 
 
-
 **Authorization is done in the following way:**   
 
   * The [Secured class](https://github.com/ics-software-engineering/play-example-login/blob/master/app/controllers/Secured.java)
-    supports authorization by extending the Security.Authenticator class and overriding the getUsername and onUnauthorized
-    methods.  
+    supports authorization by extending the Security.Authenticator class and overriding the getUsername() and onUnauthorized()
+    methods.  These methods are used to restrict access to the profile page.
+    This class also implements helper methods (getUser(), isLoggedIn(), and getUserInfo()) that enable controllers to 
+    adjust the view depending upon whether the user is logged in or not.
     
   * The [Application controller class](https://github.com/ics-software-engineering/play-example-login/blob/master/app/controllers/Application.java) 
-    annotates controller methods that require authenticated users with @Security.Authenticated(Secured.java).
+    annotates the controller method sthat requires authenticated users (logout() and profile()) 
+    with @Security.Authenticated(Secured.java).
     
   * The [Main.scala.html template](https://github.com/ics-software-engineering/play-example-login/blob/master/app/views/Main.scala.html)
     implements a [context sensitive navbar](https://github.com/ics-software-engineering/play-example-login/blob/master/app/views/Main.scala.html#L34-47)

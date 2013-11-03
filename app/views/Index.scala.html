@@ -12,9 +12,8 @@
        <p>Typically, an application will first authenticate the user through a login process, after which
        the user is authorized to retrieve certain kinds of data. </p>
        <h3>Functionality</h3>
-       <p><b>Home page:</b> Displayed only to unauthenticated users. This page displays a login link 
-       in the navbar.</p>
-       <p><b>Login page:</b> Displayed only to unauthenticated users. This page displays a login form.</p>
+       <p><b>Home page:</b> This page displays a login link in the navbar.</p>
+       <p><b>Login page:</b> This page displays a login form.</p>
        <p><b>Profile page:</b> Displayed only to authenticated users.  This page provides some text in the 
        body of the page.  The navbar displays the user name and a logout link.
        <p><b>Logout link:</b> Displayed only to authenticated users.   Logs them out. </p>
@@ -23,7 +22,7 @@
           <li>Login in with email "smith@@example.com" and password "password". Once logged in, note that the Profile link appears in the navbar.
           Take a look at that page.</li>
           <li>Logout, then try to login with different credentials.  An error should result when you try to submit.</li>
-          <li>While logged out, try to retrieve the /profile page.  Note that you can't do it unless logged in.</li>
+          <li>While logged out, try to retrieve the /profile page by entering the URL manually.  Note that you can't do it unless logged in.</li>
           </ul>
        </p>
        <h3>Pros and cons of this example</h3>
@@ -42,9 +41,10 @@
        <li> It does not enable users to login using third party credentials such
        as Google, Yahoo, or Facebook.</li>
        </ol>   
-       To see a more complex example that addresses these authentication issues, you 
-       can look at <a href="http://joscha.github.io/play-authenticate/">Play-Authenticate</a>.
-       Another useful system to see if you need more sophisticated forms of authorization in Play is 
+       There are at least two Play plugins that addresses these authentication issues, 
+       <a href="http://joscha.github.io/play-authenticate/">Play-Authenticate</a> and
+       <a href="http://securesocial.ws/">SecureSocial</a>.
+       Another plugin to review if you need more sophisticated forms of authorization in Play is 
        <a href="https://github.com/schaloner/deadbolt-2">DeadBolt 2</a>.
        </div>
      </div>
