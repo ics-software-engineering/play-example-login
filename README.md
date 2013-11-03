@@ -50,7 +50,7 @@ They are slightly more complicated to use but provide mechanisms to address thes
 Screencast
 ----------
 
-Click the image below to watch a 23 minute walkthrough of this system. 
+Click the image below to watch a 15 minute walkthrough of this system. 
 
 [<img src="https://raw.github.com/ics-software-engineering/play-example-login/master/doc/play-example-login-youtube.png" width="400">](http://www.youtube.com/watch?v=L3yudzFXjxg)
 
