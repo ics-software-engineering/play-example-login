@@ -1,7 +1,5 @@
 package controllers;
 
-import models.UserInfo;
-import models.UserInfoDB;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -17,11 +15,11 @@ import play.mvc.Security;
 public class Application extends Controller {
 
   /**
-   * Provides the Index page (only to unauthenticated users).
+   * Provides the Index page.
    * @return The Index page. 
    */
   public static Result index() {
-    return ok(Index.render("Home", false, null));
+    return ok(Index.render("Home", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx())));
   }
   
   /**
@@ -30,7 +28,7 @@ public class Application extends Controller {
    */
   public static Result login() {
     Form<LoginFormData> formData = Form.form(LoginFormData.class);
-    return ok(Login.render("Login", false, null, formData));
+    return ok(Login.render("Login", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData));
   }
 
   /**
@@ -48,7 +46,7 @@ public class Application extends Controller {
 
     if (formData.hasErrors()) {
       flash("error", "Login credentials not valid.");
-      return badRequest(Login.render("Login", false, null, formData));
+      return badRequest(Login.render("Login", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData));
     }
     else {
       // email/password OK, so now we set the session variable and only go to authenticated pages.
@@ -74,8 +72,6 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public static Result profile() {
-    UserInfo userInfo = UserInfoDB.getUser(request().username());
-    Boolean isLoggedIn = (userInfo != null);
-    return ok(Profile.render("Profile", isLoggedIn, userInfo));
+    return ok(Profile.render("Profile", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx())));
   }
 }
