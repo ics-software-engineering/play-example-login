@@ -30,8 +30,8 @@ public class LoginFormData {
     List<ValidationError> errors = new ArrayList<>();
     
     if (!UserInfoDB.isValid(email, password)) {
-      errors.add(new ValidationError("email", ""));
-      errors.add(new ValidationError("password", ""));      
+      errors.add(new ValidationError("email", "error with login credentials"));
+      errors.add(new ValidationError("password", ""));
     }
 
     return (errors.size() > 0) ? errors : null;

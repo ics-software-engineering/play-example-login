@@ -26,11 +26,13 @@
             <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
           </fieldset>
         }
-         @if(flash.containsKey("error")) {
-           <div id="error-message" class="text-danger">
-             @flash.get("error")
-           </div>
-         }
+          @if(flash.size() > 0){
+          <div class="alert-alert error text-danger">
+              @for((key, value) <- flash){
+              <strong>Error : </strong> @value<br />
+              }
+          </div>
+          }
       </div>
     </div>
   </div>
