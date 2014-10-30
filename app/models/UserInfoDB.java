@@ -1,5 +1,7 @@
 package models;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +55,6 @@ public class UserInfoDB {
             &&
             isUser(email) 
             &&
-            getUser(email).getPassword().equals(password));
+            BCrypt.checkpw(password, getUser(email).getPassword()));
   }
 }

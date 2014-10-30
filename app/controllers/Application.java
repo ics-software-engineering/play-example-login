@@ -1,6 +1,7 @@
 package controllers;
 
 import play.data.Form;
+import play.data.validation.ValidationError;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.Index;
@@ -8,6 +9,8 @@ import views.html.Profile;
 import views.html.Login;
 import views.formdata.LoginFormData;
 import play.mvc.Security;
+
+import java.util.List;
 
 /**
  * Implements the controllers for this application.
@@ -44,10 +47,17 @@ public class Application extends Controller {
     // Get the submitted form data from the request object, and run validation.
     Form<LoginFormData> formData = Form.form(LoginFormData.class).bindFromRequest();
 
-    if (formData.hasErrors()) {
-      flash("error", "Login credentials not valid.");
-      return badRequest(Login.render("Login", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData));
-    }
+      if (formData.hasErrors()) {
+          for (String key : formData.errors().keySet()) {
+              List<ValidationError> currentError = formData.errors().get(key);
+              for (play.data.validation.ValidationError error : currentError) {
+                  if (!error.message().equals("")){
+                      flash(key, error.message());
+                  }
+              }
+          }
+          return badRequest(Login.render("Login", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData));
+      }
     else {
       // email/password OK, so now we set the session variable and only go to authenticated pages.
       session().clear();

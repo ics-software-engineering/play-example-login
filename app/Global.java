@@ -1,4 +1,5 @@
 import models.UserInfoDB;
+import org.mindrot.jbcrypt.BCrypt;
 import play.Application;
 import play.GlobalSettings;
 
@@ -13,6 +14,6 @@ public class Global extends GlobalSettings {
    * @param app The application.
    */
   public void onStart(Application app) {
-    UserInfoDB.addUserInfo("John Smith", "smith@example.com", "password");
+    UserInfoDB.addUserInfo("John Smith", "smith@example.com",  BCrypt.hashpw("password",BCrypt.gensalt(12)));
   }
 }
